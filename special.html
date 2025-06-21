@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's Special at Inlighn Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles for Static Testimonial Cards */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+        .testimonial-card-static {
+            background: var(--current-card-bg);
+            border: 1px solid var(--current-border-color);
+            padding: 35px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+        }
+        .testimonial-card-static:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 30px var(--current-shadow-color);
+        }
+        .testimonial-card-static h3 {
+            font-family: var(--font-testimonial-quote);
+            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.65;
+            margin-bottom: 25px;
+            color: var(--current-primary-text);
+            flex-grow: 1;
+        }
+
+        /* Video Container Styles */
+        .video-container-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            margin-top: 60px;
+            padding: 20px;
+            background-color: var(--current-card-bg);
+            border: 1px solid var(--current-border-color);
+            border-radius: 20px;
+            box-shadow: 0 15px 45px var(--current-shadow-color);
+        }
+        .video-responsive {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 12px;
+        }
+        .video-responsive iframe {
+            position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            width: 100%; height: 100%; border: none;
+        }
+
+        /* Blur Hover Effect Styles */
+        .blur-hover-section .blur-card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+        .blur-hover-section .blur-card {
+            background: var(--current-card-bg);
+            border: 1px solid var(--current-border-color);
+            padding: 35px;
+            border-radius: 16px;
+            transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            filter: blur(0px); transform: scale(1);
+        }
+        .blur-hover-section .blur-card-container:hover .blur-card {
+            filter: blur(3px); transform: scale(0.97);
+        }
+        .blur-hover-section .blur-card-container .blur-card:hover {
+            filter: blur(0px); transform: scale(1.03); z-index: 10;
+            box-shadow: 0 12px 30px var(--current-shadow-color);
+        }
+        .blur-card h5 { font-size: 1.6rem; margin-bottom: 15px; font-weight: 700; color: var(--current-primary-text); }
+        .blur-card p { color: var(--current-secondary-text); line-height: 1.75; font-size: 1rem; }
+        .blur-card .icon { font-size: 2rem; color: var(--current-accent-color); margin-bottom: 20px; }
+
+        /* Project Card Styles */
+        .project-card {
+            width: clamp(380px, 40vw, 520px); flex: 0 0 auto;
+            background: var(--current-card-bg); border: 1px solid var(--current-border-color);
+            border-radius: 18px; box-shadow: 0 12px 35px var(--current-shadow-color);
+            display: flex; flex-direction: column; overflow: hidden;
+            transition: transform 0.45s var(--ease-out-cubic), box-shadow 0.45s var(--ease-out-cubic);
+        }
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 18px 45px color-mix(in srgb, var(--current-shadow-color) 160%, transparent);
+        }
+        .project-card-image { height: 250px; width: 100%; }
+        .project-card-image img { width: 100%; height: 100%; object-fit: cover; }
+        .project-card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+        .project-card-content h4 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
+        .project-card-content p { font-size: 0.95rem; line-height: 1.6; color: var(--current-secondary-text); flex-grow: 1; margin-bottom: 25px; }
+        .project-card-content .btn { align-self: flex-start; }
+        
+        /* Perks & Benefits Section Styles */
+        .perks-layout-grid {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center;
+        }
+        .certificate-image-wrapper {
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 10px 30px var(--current-shadow-color);
+            transition: transform 0.5s var(--ease-out-cubic), box-shadow 0.5s var(--ease-out-cubic);
+        }
+        .certificate-image-wrapper img { width: 100%; display: block; }
+        .certificate-image-wrapper:hover {
+            transform: scale(1.03) rotate(-1.5deg);
+            box-shadow: 0 18px 45px color-mix(in srgb, var(--current-shadow-color) 150%, transparent);
+        }
+        .perks-grid-col .features-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        
+        @media (max-width: 992px) {
+            .perks-layout-grid { grid-template-columns: 1fr; gap: 40px; }
+            .perks-grid-col .features-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+    </style>
+</head>
+<body data-theme="light"> 
+
+    <div class="preloader">
+        <div class="preloader-logo-simple">IT</div>
+        <div class="preloader-text">Inlighn Tech</div>
+    </div>
+
+    <div class="animated-bg-pattern"></div>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <header class="main-header"> 
+                <div class="container">
+                    <a href="index.html" class="logo">INLIGHN</a>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="program.html">Programs</a></li>
+                            <li><a href="verify.html">Verify Certificate</a></li>
+                            <li><a href="special.html">What's Special</a></li> 
+                            <li><a href="contact.html">Contact Us</a></li> 
+                        </ul>
+                    </nav>
+                    <div class="header-right">
+                        <button id="theme-switcher" class="theme-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <a href="#" class="btn btn-primary header-login-btn">Login</a>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <!-- Hero Section -->
+                <section class="hero-section" data-section-theme="dark" style="min-height: 60vh;">
+                    <div class="hero-background">
+                       <video autoplay muted loop playsinline>
+                            <source src="https://videos.pexels.com/video-files/3252519/3252519-hd_1920_1080_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="container hero-container-flex" style="text-align: center; justify-content: center;">
+                         <div class="hero-content-left">
+                            <h1 class="hero-main-title animate-text-lines">Experience, Learn,<br> and <span class="accent-line">Thrive With Us.</span>
+                            </h1>
+                         </div>
+                    </div>
+                </section>
+                
+                <!-- Success Stories Section (Text Cards) -->
+                <section id="testimonials" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">TESTIMONIALS</h3>
+                        <h2 class="section-title-main animate-text-lines">Success Stories <br>from Our Interns.</h2>
+                        <div class="testimonial-grid">
+                            <div class="testimonial-card-static slide-up" data-stagger-delay="0">
+                                <h3>"The mentorship and structured learning approach made a significant impact on my skills."</h3>
+                                <div class="author"><img src="https://www.inlighntech.com/wp-content/uploads/2025/03/1736172583974.jpeg" alt="Mirunalini R"><div><h5>Mirunalini R</h5><span>Data Analyst Intern</span></div></div>
+                            </div>
+                            <div class="testimonial-card-static slide-up" data-stagger-delay="1">
+                                <h3>"The structured guidance and expert mentorship improved my problem-solving and analytical skills."</h3>
+                                <div class="author"><img src="https://www.inlighntech.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-02-24-at-11.20.06_dd9ec3aa.jpg" alt="Surendra Kumar"><div><h5>Surendra Kumar</h5><span>Data Science Intern</span></div></div>
+                            </div>
+                            <div class="testimonial-card-static slide-up" data-stagger-delay="2">
+                                <h3>"The real-world exposure and expert guidance made me industry-ready."</h3>
+                                <div class="author"><img src="https://www.inlighntech.com/wp-content/uploads/2025/03/1718242989174-712x800.jpeg" alt="Hariharan Rajendaran"><div><h5>Hariharan Rajendaran</h5><span>Full-Stack Developer Intern</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Video Testimonial Section -->
+                <section id="video-testimonial" data-section-theme="dark">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">IN THEIR OWN WORDS</h3>
+                        <h2 class="section-title-main animate-text-lines">Hear Directly From<br>an Intern.</h2>
+                        <div class="video-container-wrapper zoom-in" data-stagger-delay="0">
+                            <div class="video-responsive">
+                                <iframe src="https://www.youtube.com/embed/SuGx6a8WLZA?si=m-1eDG9df1orGZ0j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Interns of the Month Challenge Section -->
+                <section class="blur-hover-section" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">EPIC OPPORTUNITY</h3>
+                        <h2 class="section-title-main animate-text-lines">Interns of the Month <br>Challenge.</h2>
+                         <p class="fade-in contact-subtext" style="margin-bottom: 60px;">Inlighn Tech is bringing you an EPIC opportunity with the “Interns of the Month Challenge”! 🎉</p>
+                        <div class="blur-card-container">
+                            <div class="blur-card" data-stagger-delay="0">
+                                <div class="icon"><i class="fas fa-hand-holding-usd"></i></div>
+                                <h5>Stipend Reward</h5>
+                                <p>A handsome stipend reward of ₹15,000 for our top-performing interns to celebrate their hard work and dedication.</p>
+                            </div>
+                            <div class="blur-card" data-stagger-delay="1">
+                                <div class="icon"><i class="fas fa-box-open"></i></div>
+                                <h5>Exclusive Swag Pack</h5>
+                                <p>An exclusive Inlighn Tech Welcome Kit & Swag Pack, filled with goodies to make you feel part of the family.</p>
+                            </div>
+                            <div class="blur-card" data-stagger-delay="2">
+                                <div class="icon"><i class="fas fa-trophy"></i></div>
+                                <h5>Special Recognition</h5>
+                                <p>Get featured on our platform! We provide special recognition to our winners, showcasing their achievements to our network.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Our Interns' Projects Section -->
+                <section class="horizontal-scroll-section" data-section-theme="dark">
+                    <div class="sticky-container">
+                        <h2 class="horizontal-section-title animate-text-lines">Portfolio of Excellence <br>Our Interns' Projects.</h2>
+                        <div class="scroll-content-wrapper">
+                            <div class="scroll-content">
+                                <div class="project-card slide-up-card" data-stagger-delay="0">
+                                    <div class="project-card-image"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project Image"></div>
+                                    <div class="project-card-content">
+                                        <h4>Nova - Voice-Activated AI</h4>
+                                        <p>An advanced AI assistant integrating speech recognition and NLP. Developed by Athira Prasad Nair.</p>
+                                        <a href="https://drive.google.com/file/d/1HXIhDx4CIn3ajKDgij7hfDzEqpJNbLsh/view?usp=sharing" target="_blank" class="btn btn-primary header-login-btn"><span>View Project</span></a>
+                                    </div>
+                                </div>
+                                <div class="project-card slide-up-card" data-stagger-delay="1">
+                                    <div class="project-card-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project Image"></div>
+                                    <div class="project-card-content">
+                                        <h4>Data Analyst Projects</h4>
+                                        <p>A collection of data analysis projects showcasing skills in data cleaning, visualization, and insight generation.</p>
+                                        <a href="https://github.com/shubhamraut0209/Data-Analyst-Internship-Projects" target="_blank" class="btn btn-primary header-login-btn"><span>View on GitHub</span></a>
+                                    </div>
+                                </div>
+                                 <div class="project-card slide-up-card" data-stagger-delay="2">
+                                    <div class="project-card-image"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project Image"></div>
+                                    <div class="project-card-content">
+                                        <h4>Python Programming Projects</h4>
+                                        <p>A series of projects demonstrating proficiency in Python for various applications. By A. Shiva Kiran.</p>
+                                        <a href="https://drive.google.com/file/d/1W82EcMRan4uR3gOBaw9Wk6YRARLvlMT4/view?usp=sharing" target="_blank" class="btn btn-primary header-login-btn"><span>View Project</span></a>
+                                    </div>
+                                </div>
+                                <div class="project-card slide-up-card" data-stagger-delay="3">
+                                    <div class="project-card-image"><img src="https://www.inlighntech.com/wp-content/uploads/2025/05/matrix-hacker-background-1-300x200.jpg" alt="Project Image"></div>
+                                    <div class="project-card-content">
+                                        <h4>Cyber Security: Port Hunter</h4>
+                                        <p>A custom TCP scanner using Nmap & Metasploit for network reconnaissance. By - Avala Nithin.</p>
+                                        <a href="https://drive.google.com/file/d/1zg2KJ6PJJlG3-FY0_tjAewfP0xcpxr1e/view?usp=sharing" target="_blank" class="btn btn-primary header-login-btn"><span>View Project</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- How to Participate Section -->
+                <section class="process-section" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">PARTICIPATION GUIDE</h3>
+                        <h2 class="section-title-main animate-text-lines">How to Participate?</h2>
+                        <div class="process-wrapper">
+                            <div class="process-line-gfx"></div>
+                            <div class="process-step fade-in-up" data-stagger-delay="0"><div class="process-number">01</div><div class="process-content"><h3>Check Eligibility & Apply</h3><p>If you're in your last month of internship, you're eligible! You'll receive a Google Form link to apply for this prestigious title.</p></div></div>
+                            <div class="process-step fade-in-up" data-stagger-delay="1"><div class="process-number">02</div><div class="process-content"><h3>Submit Your Best Work</h3><p>Showcase your talent by submitting your best projects related to your internship domain. This is your chance to shine!</p></div></div>
+                            <div class="process-step fade-in-up" data-stagger-delay="2"><div class="process-number">03</div><div class="process-content"><h3>Skill Assessment Test</h3><p>Prove your expertise and technical prowess by taking a skill assessment test designed to challenge your knowledge.</p></div></div>
+                            <div class="process-step fade-in-up" data-stagger-delay="3"><div class="process-number">04</div><div class="process-content"><h3>Final Interview Round</h3><p>If shortlisted, you'll advance to the final round. Ace the interview with our panel to secure your spot as Intern of the Month.</p></div></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rules & Selection Process -->
+                <section class="blur-hover-section" data-section-theme="dark">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">THE PROCESS</h3>
+                        <h2 class="section-title-main animate-text-lines">Rules & Selection <br>Process.</h2>
+                        <div class="blur-card-container">
+                            <div class="blur-card" data-stagger-delay="0">
+                                <div class="icon"><i class="fas fa-user-check"></i></div>
+                                <h5>One-Time Application</h5>
+                                <p>To ensure fairness and give everyone a chance, each intern can apply only ONCE during their final month of the internship.</p>
+                            </div>
+                            <div class="blur-card" data-stagger-delay="1">
+                                <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+                                <h5>Winner Announcement</h5>
+                                <p>The moment you've been waiting for! Winners will be announced on the last day of every month. Stay tuned!</p>
+                            </div>
+                            <div class="blur-card" data-stagger-delay="2">
+                                <div class="icon"><i class="fas fa-award"></i></div>
+                                <h5>Celebrating Excellence</h5>
+                                <p>The top 10 outstanding interns will be celebrated with amazing rewards, recognition, and a feature on our platform.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- RESTRUCTURED: Perks & Benefits Section -->
+                <section id="perks" class="scrolly-features-section" data-section-theme="light"> 
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">BENEFITS</h3>
+                        <h2 class="section-title-main animate-text-lines">Perks & Benefits of<br>Our Internships.</h2>
+                        <div class="perks-layout-grid">
+                            <div class="perks-image-col zoom-in" data-stagger-delay="0">
+                                <div class="certificate-image-wrapper">
+                                    <img src="https://www.inlighntech.com/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-07-at-13.06.10_905a3647.jpg" alt="Inlighn Tech ISO Certificate">
+                                </div>
+                            </div>
+                            <div class="perks-grid-col">
+                                <div class="features-grid">
+                                    <div class="feature-item slide-up" data-stagger-delay="0"><div class="icon"><i class="fas fa-gift"></i></div><h4>Top 10 Intern Reward</h4><p>A ₹15,000 stipend and an exclusive Welcome Kit for our best performers.</p></div>
+                                    <div class="feature-item slide-up" data-stagger-delay="1"><div class="icon"><i class="fas fa-file-signature"></i></div><h4>Offer Letter</h4><p>Receive your official offer letter within 30 minutes of selection.</p></div>
+                                    <div class="feature-item slide-up" data-stagger-delay="2"><div class="icon"><i class="fas fa-briefcase"></i></div><h4>Industry-Based Projects</h4><p>Work on real-world projects that solve actual industry problems.</p></div>
+                                    <div class="feature-item slide-up" data-stagger-delay="3"><div class="icon"><i class="fas fa-qrcode"></i></div><h4>Scannable Experience Letter</h4><p>Get a verifiable experience letter complete with a QR code for authenticity.</p></div>
+                                    <div class="feature-item slide-up" data-stagger-delay="4"><div class="icon"><i class="fab fa-whatsapp"></i></div><h4>Exclusive Job Updates</h4><p>Receive job updates and opportunities directly via our exclusive WhatsApp groups.</p></div>
+                                    <div class="feature-item slide-up" data-stagger-delay="5"><div class="icon"><i class="fas fa-check-double"></i></div><h4>Certificate Verification</h4><p>A seamless and robust system for instant certificate verification.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="main-footer" data-section-theme="light">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col" data-stagger-delay="0"><h4 class="footer-heading animate-footer-heading">Menu</h4><ul><li class="animate-footer-item"><a href="about.html">About</a></li> <li class="animate-footer-item"><a href="program.html">Programs</a></li><li class="animate-footer-item"><a href="contact.html">Contact</a></li><li class="animate-footer-item"><a href="#">Portal</a></li></ul></div>
+                        <div class="footer-col" data-stagger-delay="1"><h4 class="footer-heading animate-footer-heading">Legal</h4><ul><li class="animate-footer-item"><a href="#">Privacy Policy</a></li><li class="animate-footer-item"><a href="#">Terms & Conditions</a></li><li class="animate-footer-item"><a href="#">Disclaimer</a></li></ul></div>
+                        <div class="footer-col" data-stagger-delay="2"><h4 class="footer-heading animate-footer-heading">Contact</h4><p class="animate-footer-item">WeWork Prestige Central, Bengaluru, Karnataka 560001</p><p class="animate-footer-item">+91 9368842663</p></div>
+                        <div class="footer-col" data-stagger-delay="3"><h4 class="footer-heading animate-footer-heading">Follow Us</h4><div class="social-icons animate-footer-item"><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></div></div>
+                    </div>
+                    <div class="footer-bottom"><p>© <span id="current-year">2024</span> INLIGHN TECH. All Rights Reserved.</p></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

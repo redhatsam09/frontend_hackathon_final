@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Certificate - Inlighn Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .verify-section {
+            padding: 150px 0 100px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 70vh; 
+        }
+
+        .verify-section .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .verify-section .section-title-sub {
+            text-align: center;
+        }
+        .verify-section .section-title-main {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .verify-section .verify-subtext {
+            color: var(--current-secondary-text);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            max-width: 550px;
+            text-align: center; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .verify-form {
+            width: 100%;
+            max-width: 500px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .verify-form .form-group {
+            width: 100%;
+        }
+
+        .verify-form input[type="text"] {
+            width: 100%;
+            padding: 18px 20px;
+            background: var(--current-card-bg); 
+            border: 1.5px solid var(--current-border-color);
+            border-radius: 10px;
+            color: var(--current-primary-text);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            text-align: center; 
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        .verify-form input[type="text"]::placeholder {
+            color: var(--current-secondary-text);
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        .verify-form input[type="text"]:focus {
+            outline: none;
+            border-color: var(--current-accent-color);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--current-input-focus-shadow) 80%, transparent);
+        }
+
+        .verify-form .btn-verify {
+            padding: 15px 40px;
+            font-size: 1.05rem;
+            min-width: 200px; 
+        }
+        
+        #verification-result {
+            margin-top: 30px; 
+            font-size: 1.1rem; 
+            text-align: center;
+            width: 100%;
+            max-width: 550px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-section.after-verify {
+            padding-top: 50px; 
+        }
+
+    </style>
+</head>
+<body data-theme="light"> 
+
+    <div class="preloader">
+        <div class="preloader-logo-simple">IT</div>
+        <div class="preloader-text">Inlighn Tech</div>
+    </div>
+
+    <div class="animated-bg-pattern"></div>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <header class="main-header">
+                <div class="container">
+                    <a href="index.html" class="logo">INLIGHN</a> 
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="program.html">Programs</a></li>
+                            <li><a href="verify.html">Verify Certificate</a></li>
+                            <li><a href="special.html">What's Special</a></li> 
+                            <li><a href="contact.html">Contact Us</a></li> 
+                        </ul>
+                    </nav>
+                    <div class="header-right">
+                        <button id="theme-switcher" class="theme-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <a href="#" class="btn btn-primary header-login-btn">Login</a>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <section class="verify-section" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">AUTHENTICATION</h3>
+                        <h2 class="section-title-main animate-text-lines">Verify Your Certificate</h2>
+                        <p class="fade-in verify-subtext" data-delay="0.2">
+                            Please enter your unique Certificate ID below to verify its authenticity.
+                        </p>
+                        <form class="verify-form slide-up" data-delay="0.4">
+                            <div class="form-group">
+                                <input type="text" id="certificate-id" name="certificate-id" required placeholder="Enter Certificate ID">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-verify">Verify</button>
+                        </form>
+                        <div id="verification-result">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="contact-section after-verify" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">GET IN TOUCH</h3>
+                        <h2 class="section-title-main animate-text-lines">Ready to Start <br>Your Journey?</h2>
+                        <p class="fade-in contact-subtext">Have a question or want to work together? Fill out the form below.</p>
+                        <form class="contact-form slide-up">
+                            <div class="form-row">
+                                <div class="form-group"><input type="text" id="name" name="name" required placeholder="Full Name"></div>
+                                <div class="form-group"><input type="email" id="email" name="email" required placeholder="Email Address"></div>
+                            </div>
+                             <div class="form-row">
+                                <div class="form-group"><input type="text" id="domain" name="domain" placeholder="Domain of Internship"></div>
+                                <div class="form-group"><input type="text" id="state" name="state" placeholder="State"></div>
+                            </div>
+                            <div class="form-group"><textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea></div>
+                            <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="main-footer" data-section-theme="light">
+                 <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col" data-stagger-delay="0">
+                            <h4 class="footer-heading animate-footer-heading">Menu</h4>
+                            <ul>
+                                <li class="animate-footer-item"><a href="index.html">Home</a></li>
+                                <li class="animate-footer-item"><a href="about.html">About Us</a></li>
+                                <li class="animate-footer-item"><a href="index.html#programs">Programs</a></li>
+                                <li class="animate-footer-item"><a href="#contact">Contact Us</a></li>
+                                <li class="animate-footer-item"><a href="#">Login To Portal</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col" data-stagger-delay="1">
+                            <h4 class="footer-heading animate-footer-heading">Quick Links</h4>
+                            <ul>
+                                <li class="animate-footer-item"><a href="#">Privacy Policy</a></li>
+                                <li class="animate-footer-item"><a href="#">Terms & Conditions</a></li>
+                                <li class="animate-footer-item"><a href="#">Disclaimer</a></li>
+                                <li class="animate-footer-item"><a href="#">FAQ's</a></li>
+                            </ul>
+                        </div>
+                         <div class="footer-col" data-stagger-delay="2">
+                            <h4 class="footer-heading animate-footer-heading">Follow Us</h4>
+                            <div class="social-icons animate-footer-item">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                            <br>
+                            <p class="animate-footer-item"><strong>Corporate Office:</strong><br>Office No. 11A102, 11th Floor, WeWork Prestige Central, 36, Infantry Rd, Tasker Town, Shivaji Nagar, Bengaluru, Karnataka 560001</p>
+                            <p class="animate-footer-item"><strong>Phone:</strong> <a href="tel:+919368842663">+91 9368842663</a></p>
+                            <p class="animate-footer-item"><strong>Email:</strong> <a href="mailto:info@inlighntech.com">info@inlighntech.com</a></p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>Copyright <span id="current-year">2024</span> INLIGHN TECH | All Rights Reserved | Design By Gdscreotives</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const verifyForm = document.querySelector('.verify-form');
+            const verificationResultDiv = document.getElementById('verification-result');
+
+            if (verifyForm && verificationResultDiv) {
+                verifyForm.addEventListener('submit', (event) => {
+                    event.preventDefault(); 
+                    const certificateId = document.getElementById('certificate-id').value;
+                    verificationResultDiv.innerHTML = ''; 
+
+                    if (certificateId.trim() === '') {
+                        verificationResultDiv.innerHTML = '<p style="color: orange;">Please enter a Certificate ID.</p>';
+                        return;
+                    }
+
+                    verificationResultDiv.innerHTML = '<p>Verifying...</p>';
+                    setTimeout(() => {
+                        if (certificateId === "TEST123VALID") { 
+                            verificationResultDiv.innerHTML = '<p style="color: green; font-weight: bold;">Certificate Verified Successfully!</p><p>Name: John Doe<br>Course: Full Stack Development<br>Issued: 2024-01-15</p>';
+                        } else if (certificateId === "TEST456EXPIRED"){ 
+                             verificationResultDiv.innerHTML = '<p style="color: orange; font-weight: bold;">Certificate Found but Expired.</p><p>Name: Jane Smith<br>Course: Data Science<br>Expired: 2023-12-31</p>';
+                        } else { 
+                            verificationResultDiv.innerHTML = '<p style="color: red; font-weight: bold;">Invalid Certificate ID or Certificate Not Found.</p>';
+                        }
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

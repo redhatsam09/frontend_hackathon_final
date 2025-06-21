@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analyst Internship Program - Inlighn Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- GUARANTEED LOGO VISIBILITY FIX --- */
+        .main-header .logo {
+            color: #181818; /* Default color for light theme */
+            font-weight: 800;
+            font-size: 1.6rem;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        body[data-theme="dark"] .main-header .logo {
+            color: #FFFFFF; /* White color specifically for dark theme */
+        }
+        /* --- END OF FIX --- */
+
+        .main-content-area-dark { 
+            background-color: var(--current-bg-color); 
+            color: var(--current-primary-text);
+            padding-top: 120px; 
+        }
+        .light-theme-section { 
+            background-color: #F7F7F7; 
+            color: #181818; 
+            padding: 100px 0;
+        }
+        .light-theme-section .section-title-sub { color: #606060; }
+        .light-theme-section .section-title-main { color: #181818; }
+        .light-theme-section .contact-subtext { color: #606060; }
+
+
+        .course-hero-section {
+            padding: 60px 0;
+            position: relative;
+        }
+        .course-hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        .course-hero-left h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            color: var(--current-primary-text);
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        .course-intro-p, .course-description-p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--current-secondary-text);
+            margin-bottom: 20px; /* Standard margin for paragraphs */
+        }
+        .course-description-p:last-of-type {
+            margin-bottom: 25px; /* Last paragraph before next section */
+        }
+        .course-intro-p .highlight, .course-description-p .highlight {
+            color: var(--current-accent-color); 
+            font-weight: 600;
+        }
+        .course-receive-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .course-receive-list li {
+            color: var(--current-accent-color);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .course-receive-list li i {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+        .course-content-section h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--current-primary-text);
+            margin-top: 35px;
+            margin-bottom: 18px;
+        }
+        .course-content-section ul {
+            list-style: none;
+            padding-left: 0;
+            color: var(--current-secondary-text);
+        }
+        .course-content-section ul li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+            padding-left: 25px;
+            position: relative;
+        }
+        .course-content-section ul li::before {
+            content: "\f00c"; 
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--current-accent-color); 
+        }
+        .course-info-tags {
+            display: flex;
+            gap: 12px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+        .info-tag {
+            background-color: var(--current-card-bg);
+            color: var(--current-secondary-text);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--current-border-color);
+        }
+        .info-tag i { margin-right: 7px; }
+
+        .btn-brochure {
+            display: inline-block;
+            text-decoration: none;
+            background-color: var(--current-accent-color);
+            color: var(--current-bg-color); 
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.3s, transform 0.2s, color 0.3s;
+            border-radius: 8px;
+            border: 1px solid var(--current-accent-color);
+        }
+        .btn-brochure:hover {
+            background-color: var(--current-bg-color);
+            color: var(--current-accent-color);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .course-hero-right {
+            position: sticky;
+            top: 140px; 
+        }
+        .course-sticky-card {
+            background-color: var(--current-card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--current-border-color);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+            transition: transform 0.4s var(--ease-out-cubic), box-shadow 0.4s var(--ease-out-cubic);
+            transform-style: preserve-3d;
+        }
+        .course-sticky-card:hover {
+            transform: scale(1.03) rotateX(3deg) rotateY(-2deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .course-sticky-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .course-sticky-card h4 {
+            font-size: 1.4rem;
+            color: var(--current-primary-text);
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+        .course-sticky-card p {
+            font-size: 1rem;
+            color: var(--current-secondary-text);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .course-sticky-card p i { margin-right: 10px; color: var(--current-accent-color); }
+        .btn-apply-sticky {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            padding: 14px;
+            background-color: var(--current-accent-color);
+            color: var(--current-bg-color);
+            font-weight: 600;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            border: 1px solid var(--current-accent-color);
+            transition: background-color 0.3s, transform 0.2s, color 0.3s;
+        }
+        .btn-apply-sticky:hover {
+            background-color: var(--current-bg-color);
+            color: var(--current-accent-color);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .tech-learn-section, .certification-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .certification-section .section-title-main {
+             color: var(--current-primary-text); 
+        }
+
+        /* --- WIPE REVEAL ANIMATION STYLES --- */
+        .tech-learn-section .section-title-main {
+            color: var(--current-primary-text); 
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0 auto 50px;
+        }
+        .title-reveal-wrapper {
+            position: relative;
+            overflow: hidden; /* This is crucial for the effect */
+            display: inline-block;
+        }
+        .animate-wipe-reveal {
+            display: block;
+            transform: translateY(110%);
+            /* Easing for the text sliding up */
+            transition: transform 0.9s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .animate-wipe-reveal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--current-accent-color);
+            transform-origin: bottom;
+            transform: scaleY(1);
+            /* Easing for the wipe element */
+            transition: transform 0.9s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        /* Active state - triggered by JS when element is in view */
+        .title-reveal-wrapper.is-visible .animate-wipe-reveal {
+            transform: translateY(0);
+        }
+        .title-reveal-wrapper.is-visible .animate-wipe-reveal::before {
+            transform: scaleY(0);
+            transform-origin: top; /* Animates out from the top */
+        }
+        /* --- END OF NEW ANIMATION STYLES --- */
+
+        .tech-icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tech-icon-item {
+            background-color: var(--current-card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--current-border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .tech-icon-item:hover {
+            transform: translateY(-10px) scale(1.08) rotateY(5deg);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+        .tech-icon-item img {
+            height: 55px;
+            margin-bottom: 12px;
+        }
+        body[data-theme="dark"] .tech-icon-item img {
+             filter: brightness(0) invert(1) opacity(0.85); 
+        }
+        .tech-icon-item p {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--current-secondary-text);
+        }
+        .certification-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            align-items: center;
+            text-align: left;
+            margin-top: 50px;
+        }
+        .certification-content-grid img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease;
+        }
+        .certification-content-grid img:hover {
+            transform: scale(1.03) rotate(-2deg);
+        }
+        .certification-text p {
+            color: var(--current-secondary-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .faq-section-busi .faq-item {
+            background-color: #FFFFFF; 
+            border: 1px solid #E0E0E0; 
+            text-align: left;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .faq-section-busi .faq-question {
+            padding: 20px 25px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #181818; 
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .faq-section-busi .faq-question:hover {
+            background-color: #f0f0f0; 
+        }
+        .faq-section-busi .faq-question .icon {
+            transition: transform 0.3s var(--ease-out-cubic);
+            font-size: 1rem; color: #181818;
+        }
+        .faq-section-busi .faq-item.active .faq-question .icon {
+            transform: rotate(180deg);
+        }
+        .faq-section-busi .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s var(--ease-in-out-cubic), padding 0.5s var(--ease-in-out-cubic);
+            padding: 0 25px;
+            font-size: 1rem;
+            color: #606060; 
+            line-height: 1.7;
+            background-color: #FFFFFF; 
+        }
+        .faq-section-busi .faq-item.active .faq-answer {
+            max-height: 350px; 
+            padding: 0px 25px 25px 25px;
+        }
+        
+        .contact-section-final-form-wrapper .container { max-width: 650px; text-align: center;}
+        .contact-section-final-form-wrapper .section-title-sub { text-transform: uppercase; letter-spacing: 2px; font-weight: 500; margin-bottom: 10px;}
+        .contact-section-final-form-wrapper .section-title-main { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 20px;}
+        .contact-section-final-form-wrapper .contact-subtext { margin-bottom: 40px; font-size: 1.1rem;}
+        .contact-section-final-form-wrapper .contact-form {
+            background-color: #FFFFFF;
+            padding: 45px; border-radius: 18px;
+            border: 1px solid #E0E0E0;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.07); 
+            text-align: left;
+        }
+        .contact-section-final-form-wrapper .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 22px;}
+        .contact-section-final-form-wrapper .form-group.full-width { grid-column: 1 / -1; margin-bottom: 0; }
+        .contact-section-final-form-wrapper .form-group input,
+        .contact-section-final-form-wrapper .form-group textarea {
+            width: 100%; padding: 18px;
+            background: #F7F7F7; 
+            border: 1.5px solid #E0E0E0; 
+            border-radius: 10px; color: #181818; 
+            font-family: var(--font-primary); font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .contact-section-final-form-wrapper .form-group textarea { min-height: 130px; resize: vertical; margin-bottom: 22px;}
+        .contact-section-final-form-wrapper .btn-submit {
+            width: 100%; padding: 16px; font-size: 1.05rem; font-weight: 600;
+            background-color: #0A0A0A; 
+            color: #FFFFFF; 
+            border: 1px solid #0A0A0A; 
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+        .contact-section-final-form-wrapper .btn-submit:hover {
+            background-color: #282828; 
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 992px) {
+            .course-hero-grid { grid-template-columns: 1fr; }
+            .course-hero-right { position: static; margin-top: 40px; }
+            .certification-content-grid { grid-template-columns: 1fr; text-align: center; }
+            .certification-content-grid img { margin: 0 auto 30px; }
+        }
+         @media (max-width: 500px) { 
+            .contact-section-final-form-wrapper .form-row { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body data-theme="dark"> 
+
+    <div class="preloader">
+        <div class="preloader-logo-simple">IT</div>
+        <div class="preloader-text">Inlighn Tech</div>
+    </div>
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <header class="main-header">
+                <div class="container">
+                    <a href="index.html" class="logo">INLIGHN</a>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="program.html">Programs</a></li>
+                            <li><a href="verify.html">Verify Certificate</a></li>
+                            <li><a href="special.html">What's Special</a></li> 
+                            <li><a href="contact.html">Contact Us</a></li> 
+                        </ul>
+                    </nav>
+                    <div class="header-right">
+                        <button id="theme-switcher" class="theme-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <a href="#" class="btn btn-primary header-login-btn">Login</a>
+                    </div>
+                </div>
+            </header>
+            <div class="main-content-area-dark">
+                <section class="course-hero-section">
+                    <div class="container">
+                        <div class="course-hero-grid">
+                            <div class="course-hero-left">
+                                <h1 class="animate-text-lines">Business Analyst Internship Program</h1>
+                                <p class="course-intro-p fade-in" data-delay="0.2">
+                                    Business Analyst – Internship Program. Gain practical business analysis skills by working on real-world projects involving process mapping, stakeholder analysis, BRDs, data visualization, and KPIs. Get hands-on experience with Excel, SQL, Power BI, Tableau, and Agile frameworks. 
+                                    In this internship, <span class="highlight">you will receive:</span>
+                                </p>
+                                <ul class="course-receive-list fade-in" data-delay="0.3">
+                                    <li class="slide-up" data-stagger-delay="0"><i class="fas fa-file-alt"></i>Internship Offer Letter</li>
+                                    <li class="slide-up" data-stagger-delay="1"><i class="fas fa-award"></i>Internship Experience Letter</li>
+                                </ul>
+                                
+                                <div class="course-description-paragraphs fade-in-up" data-delay="0.4">
+                                     <p class="course-description-p">Perfect for students, freshers, and career switchers aiming to build a strong foundation in business analysis and step confidently into corporate roles. Dive into the world of business strategy and data-driven decision-making with our Business Analyst Internship Program, meticulously designed to prepare you for the dynamic and evolving demands of today’s business environment. This internship equips you with the core analytical, technical, and communication skills necessary to become a confident and competent Business Analyst.</p>
+                                </div>
+
+                                <div class="course-content-section fade-in-up" data-stagger-delay="1">
+                                    <h3>At the end of this internship, you will:</h3>
+                                    <ul>
+                                        <li>Develop expertise in analyzing and documenting complex business processes</li>
+                                        <li>Make data-driven decisions using professional business analysis tools</li>
+                                        <li>Build a strong portfolio showcasing your projects and skills</li>
+                                        <li>Gain the confidence to lead and manage business solutions effectively</li>
+                                    </ul>
+                                </div>
+                                <div class="course-content-section fade-in-up" data-stagger-delay="2">
+                                    <h3>Ready to take the next step in your business career?</h3>
+                                    <p>Join our internship program and become a business analyst who drives real impact.</p>
+                                </div>
+                                <div class="course-info-tags fade-in" data-delay="0.5">
+                                    <span class="info-tag slide-up" data-stagger-delay="0"><i class="fas fa-star"></i> 4.5/5 Rating</span>
+                                    <span class="info-tag slide-up" data-stagger-delay="1"><i class="fas fa-clock"></i> 3 to 6 months</span>
+                                    <span class="info-tag slide-up" data-stagger-delay="2"><i class="fas fa-level-up-alt"></i> Intermediate</span>
+                                </div>
+                                <p class="course-intro-p fade-in" data-delay="0.6">The registration fee is just ₹99. The 1-month internship is only ₹499. The 3-month internship is just ₹899.</p>
+                                <a href="#" class="btn btn-brochure fade-in" data-delay="0.7"><i class="fas fa-download"></i> Download Brochure</a>
+                            </div>
+                            <div class="course-hero-right">
+                                <div class="course-sticky-card scale-fade-reveal">
+                                    <img src="https://www.inlighntech.com/wp-content/uploads/2025/05/carlos-muza-hpjSkU2UYSU-unsplash-300x214.jpg" alt="Business Analyst Program">
+                                    <h4>Business Analyst Internship Program</h4>
+                                    <p><i class="fas fa-calendar-alt"></i>Batch Starts: TBA</p>
+                                    <p><i class="fas fa-tags"></i>Pricing starts from The registration fee is just ₹99. The 1-month internship is only ₹499. The 3-month internship is just ₹899/-</p>
+                                    <a href="#" class="btn btn-apply-sticky">Apply Now <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tech-learn-section">
+                    <div class="container">
+                        <div class="title-reveal-wrapper">
+                             <h2 class="section-title-main animate-wipe-reveal">Technologies You'll Learn</h2>
+                        </div>
+                        <div class="tech-icons-grid">
+                            <div class="tech-icon-item slide-up" data-stagger-delay="0"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> <p>GITHUB</p></div>
+                            <div class="tech-icon-item slide-up" data-stagger-delay="0.1"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original-wordmark.svg" alt="Pandas"> <p>PANDAS</p></div>
+                            <div class="tech-icon-item slide-up" data-stagger-delay="0.2"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> <p>PYTHON</p></div>
+                            <div class="tech-icon-item slide-up" data-stagger-delay="0.3"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqldeveloper/sqldeveloper-original.svg" alt="SQL"> <p>SQL</p></div>
+                            <div class="tech-icon-item slide-up" data-stagger-delay="0.4"><img src="https://inlighntech.com/wp-content/uploads/2025/04/Tech6-Ckb9o2ah.png" alt="Tableau"> <p>TABLEAU</p></div>
+                            <div class="tech-icon-item slide-up" data-stagger-delay="0.5"><img src="https://www.inlighntech.com/wp-content/uploads/2025/04/ML.jpg" alt="Machine Learning"> <p>ML</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="certification-section">
+                    <div class="container">
+                        <h2 class="section-title-main animate-text-lines">Internship Certification</h2>
+                        <div class="certification-content-grid">
+                             <div class="certification-image zoom-in" data-delay="0.1">
+                                <img src="https://www.inlighntech.com/wp-content/uploads/2025/05/Experience-Letter-format-1.png" alt="Sample Internship Certificate">
+                             </div>
+                             <div class="certification-text fade-in-up" data-delay="0.3">
+                                <p>Upon successful completion of this internship, you’ll receive a certificate recognized worldwide. This internship certificate proves your expertise in the chosen domain. It reflects your learning, skills, and dedication throughout the internship.</p>
+                             </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+                
+            <section class="faq-section-busi light-theme-section">
+                <div class="container">
+                    <h2 class="section-title-main animate-text-lines">Frequently Asked Questions</h2>
+                    <div class="faq-list">
+                        <div class="faq-item slide-up" data-stagger-delay="0">
+                            <div class="faq-question">How can I enroll in this internship? <span class="icon"><i class="fas fa-plus"></i></span></div>
+                            <div class="faq-answer"><p>To enroll, simply click the "Apply Now" button on this page and follow the registration steps. You'll need to fill out a short form and complete the payment for the registration fee.</p></div>
+                        </div>
+                        <div class="faq-item slide-up" data-stagger-delay="0.1">
+                            <div class="faq-question">What would happen after making registration fee? <span class="icon"><i class="fas fa-plus"></i></span></div>
+                            <div class="faq-answer"><p>After successfully paying the registration fee, you will receive a confirmation email with further instructions, including access to the internship portal and details about your batch and onboarding process.</p></div>
+                        </div>
+                        <div class="faq-item slide-up" data-stagger-delay="0.2">
+                            <div class="faq-question">What if I get rejected in interview? <span class="icon"><i class="fas fa-plus"></i></span></div>
+                            <div class="faq-answer"><p>Our internship programs are designed to be inclusive. While some specialized roles might have a basic screening, the Business Analyst program focuses on learning and development. Direct rejection is rare; we aim to guide you appropriately.</p></div>
+                        </div>
+                        <div class="faq-item slide-up" data-stagger-delay="0.3">
+                            <div class="faq-question">Is this 100% work-from-home? <span class="icon"><i class="fas fa-plus"></i></span></div>
+                            <div class="faq-answer"><p>Yes, this Business Analyst Internship Program is completely online and can be done from the comfort of your home.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-section-final-form-wrapper light-theme-section">
+                <div class="container">
+                    <h3 class="section-title-sub scale-fade-reveal">GET IN TOUCH</h3>
+                    <h2 class="section-title-main animate-text-lines">Ready to Start <br>Your Journey?</h2>
+                    <p class="fade-in contact-subtext" data-delay="0.2">Have a question? Fill out the form below.</p>
+                    <form id="business-page-contact-form" class="contact-form slide-up" data-delay="0.3">
+                        <div class="form-row">
+                            <div class="form-group"><input type="text" name="name" required placeholder="Full Name"></div>
+                            <div class="form-group"><input type="email" name="email" required placeholder="Email Address"></div>
+                        </div>
+                        <div class="form-group full-width"> 
+                            <textarea name="message" rows="5" required placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </section>
+            
+            <footer class="main-footer" data-section-theme="light">
+                 <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col" data-stagger-delay="0">
+                            <h4 class="footer-heading animate-footer-heading">Menu</h4>
+                            <ul>
+                                <li class="animate-footer-item"><a href="index.html">Home</a></li>
+                                <li class="animate-footer-item"><a href="about.html">About Us</a></li>
+                                <li class="animate-footer-item"><a href="course.html">Programs</a></li>
+                                <li class="animate-footer-item"><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col" data-stagger-delay="1">
+                            <h4 class="footer-heading animate-footer-heading">Quick Links</h4>
+                            <ul>
+                                <li class="animate-footer-item"><a href="#">Privacy Policy</a></li>
+                                <li class="animate-footer-item"><a href="#">Terms & Conditions</a></li>
+                                <li class="animate-footer-item"><a href="#">Disclaimer</a></li>
+                            </ul>
+                        </div>
+                         <div class="footer-col" data-stagger-delay="2">
+                            <h4 class="footer-heading animate-footer-heading">Follow Us</h4>
+                            <div class="social-icons animate-footer-item">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                            <br>
+                            <p class="animate-footer-item"><strong>Phone:</strong> <a href="tel:+919368842663">+91 9368842663</a></p>
+                            <p class="animate-footer-item"><strong>Email:</strong> <a href="mailto:info@inlighntech.com">info@inlighntech.com</a></p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>Copyright <span id="current-year">2024</span> INLIGHN TECH | All Rights Reserved</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- THEME SWITCHER LOGIC ---
+            const themeSwitcher = document.getElementById('theme-switcher');
+            const themeIcon = themeSwitcher.querySelector('i');
+            const body = document.body;
+            const header = document.querySelector('.main-header');
+
+            function applyTheme(theme) {
+                body.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+
+                if (theme === 'dark') {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    if (header) header.setAttribute('data-section-theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    if (header) header.removeAttribute('data-section-theme');
+                }
+            }
+
+            themeSwitcher.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
+
+
+            // --- FAQ ACCORDION LOGIC ---
+            const faqItems = document.querySelectorAll('.faq-section-busi .faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const icon = question.querySelector('.icon i'); 
+                if(icon) icon.className = 'fas fa-plus'; 
+
+                question.addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.faq-section-busi .faq-item.active');
+                    if (currentlyActive && currentlyActive !== item) {
+                        currentlyActive.classList.remove('active');
+                        const activeIcon = currentlyActive.querySelector('.faq-question .icon i');
+                        if(activeIcon) activeIcon.className = 'fas fa-plus';
+                    }
+                    item.classList.toggle('active');
+                    if(icon) {
+                        if (item.classList.contains('active')) {
+                            icon.className = 'fas fa-minus';
+                        } else {
+                            icon.className = 'fas fa-plus';
+                        }
+                    }
+                });
+            });
+
+            // --- WIPE REVEAL ANIMATION ON SCROLL ---
+            const wipeRevealElements = document.querySelectorAll('.animate-wipe-reveal');
+            if (wipeRevealElements.length > 0) {
+                const wipeObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.parentElement.classList.add('is-visible');
+                            wipeObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { 
+                    threshold: 0.5 
+                });
+
+                wipeRevealElements.forEach(el => {
+                    wipeObserver.observe(el);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

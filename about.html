@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Inlighn Tech (New Design)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles for the Hover Blur Effect on Vision/Mission Cards */
+        .vision-mission-section .wwa-container { /* Assuming re-use of wwa-container */
+            /* This class acts as the hover-effect-group */
+        }
+        .vision-mission-section .wwa-card { /* These are the hover-effect-cards */
+            transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out;
+            filter: blur(0px); /* Default state: no blur */
+            transform: scale(1);
+        }
+
+        .vision-mission-section .wwa-container:hover .wwa-card {
+            filter: blur(3px); /* Blur all cards in group on parent hover */
+            transform: scale(0.97); /* Slightly scale down non-active cards */
+        }
+
+        .vision-mission-section .wwa-container .wwa-card:hover {
+            filter: blur(0px); /* Remove blur from the specifically hovered card */
+            transform: scale(1.03); /* Slightly scale up the active card */
+            z-index: 10; /* Ensure hovered card is on top if overlap occurs due to scale */
+        }
+        
+        /* Styles for the normal Achievements Display Section */
+        .achievements-display-section {
+            padding: 80px 0;
+        }
+        .achievements-display-section .container {
+            text-align: center;
+        }
+        .achievements-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            margin-top: 60px;
+        }
+        .achievement-item {
+            background: var(--current-card-bg);
+            border: 1px solid var(--current-border-color);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px var(--current-shadow-color);
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .achievement-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px var(--current-shadow-color);
+        }
+        .achievement-item img {
+            max-width: 90%;
+            height: auto;
+            max-height: 380px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--current-border-color);
+        }
+        .achievement-item h4 {
+            font-size: 1.4rem;
+            color: var(--current-primary-text);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .achievement-item p {
+            font-size: 0.95rem;
+            color: var(--current-secondary-text);
+        }
+
+        /* Specific styling for the hero-like section on about page */
+        .about-hero-section {
+            padding: 150px 0 100px;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .about-hero-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .about-hero-image {
+            flex: 0 0 45%;
+            max-width: 500px;
+        }
+        .about-hero-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--current-shadow-color);
+        }
+        .about-hero-content {
+            flex: 1;
+        }
+        .about-hero-content .hero-main-title {
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .about-hero-content .hero-sub-text {
+            text-align: left;
+            max-width: none;
+            font-size: clamp(1rem, 1.7vw, 1.15rem);
+            line-height: 1.7;
+        }
+
+        .why-inlighn-grid .feature-item {
+            text-align: left;
+        }
+        .feature-item.icon-inline {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto;
+            gap: 0 15px;
+            align-items: start;
+        }
+        .feature-item.icon-inline .icon {
+            grid-row: 1 / span 2;
+            margin-bottom: 0; 
+            align-self: center;
+        }
+        .feature-item.icon-inline h4 {
+            grid-column: 2;
+            grid-row: 1;
+            margin-bottom: 5px;
+        }
+        .feature-item.icon-inline p {
+            grid-column: 2;
+            grid-row: 2;
+        }
+        @media (max-width: 768px) {
+            .about-hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-hero-image {
+                max-width: 80%;
+                margin-bottom: 30px;
+            }
+            .about-hero-content .hero-main-title,
+            .about-hero-content .hero-sub-text {
+                text-align: center;
+            }
+            .vision-mission-section .wwa-container:hover .wwa-card {
+                filter: blur(0px); /* Disable blur effect on smaller screens if desired */
+                transform: scale(1);
+            }
+            .vision-mission-section .wwa-container .wwa-card:hover {
+                transform: scale(1.02); /* Simpler hover effect for mobile */
+            }
+            .achievements-grid {
+                gap: 25px;
+            }
+            .achievement-item {
+                 max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <div class="preloader">
+        <div class="preloader-logo-simple">IT</div>
+        <div class="preloader-text">Inlighn Tech</div>
+    </div>
+
+    <div class="animated-bg-pattern"></div>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <header class="main-header">
+                <div class="container">
+                    <a href="index.html" class="logo">INLIGHN</a>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="program.html">Programs</a></li>
+                            <li><a href="verify.html">Verify Certificate</a></li>
+                            <li><a href="special.html">What's Special</a></li> 
+                            <li><a href="contact.html">Contact Us</a></li> 
+                        </ul>
+                    </nav>
+                    <div class="header-right">
+                        <button id="theme-switcher" class="theme-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <a href="#" class="btn btn-primary header-login-btn">Login</a>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <section class="about-hero-section" data-section-theme="light">
+                    <div class="container about-hero-container">
+                        <div class="about-hero-image fade-in" data-delay="0.2">
+                            <img src="https://www.inlighntech.com/wp-content/uploads/2025/05/Green-Corporate-Financial-Roadmap-Presentation-3.png" alt="Inlighn Tech Roadmap">
+                        </div>
+                        <div class="about-hero-content">
+                            <h1 class="hero-main-title animate-text-lines" data-delay="0">We Provide Best <br>Industry Services For You.</h1>
+                            <p class="hero-sub-text fade-in" data-delay="0.4">
+                                At INLIGHN TECH, we believe that the future of education lies in bridging the gap between academic learning and industry needs. Founded with a passion for providing meaningful and immersive learning experiences, we offer internship programs that equip students and young professionals with practical skills in Cyber Security, Full Stack Development, Data Science, and Project Management.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Vision and Mission with HOVER BLUR ANIMATION -->
+                <!-- Re-using 'who-we-are-section' for consistent styling, adding 'vision-mission-section' for specific hover styles -->
+                <section class="who-we-are-section vision-mission-section" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">INLIGHN TECH</h3>
+                        <h2 class="section-title-main animate-text-lines">Save Time and Effort <br>with INLIGHN TECH.</h2>
+                        <!-- This 'wwa-container' acts as the hover group -->
+                        <div class="wwa-container"> 
+                            <div class="wwa-card zoom-in" data-stagger-delay="0"> <!-- These are the hover-effect-cards -->
+                                <h5>Our Vision</h5>
+                                <p>To be a leading EdTech platform that bridges the gap between academic knowledge and industry demands, shaping the next generation of tech innovators and leaders through hands-on, practical learning.</p>
+                            </div>
+                            <div class="wwa-card zoom-in" data-stagger-delay="1"> <!-- These are the hover-effect-cards -->
+                                <h5>Our Mission</h5>
+                                <p>To empower students and young professionals by providing immersive, real-world learning experiences through tailored internship programs. We aim to equip our participants with the practical skills and confidence they need to succeed in the fast-evolving tech industry.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="scrolly-features-section" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">WHY CHOOSE INLIGHN TECH</h3>
+                        <h2 class="section-title-main animate-text-lines">The Best Beneficial Side of <br>INLIGHNTECH</h2>
+                        <div class="features-grid why-inlighn-grid">
+                            <div class="feature-item slide-up icon-inline" data-stagger-delay="0">
+                                <div class="icon"><i class="fas fa-file-alt"></i></div>
+                                <h4>High Quality Resources</h4>
+                                <p>Access expertly designed resources for valuable hands-on learning and real-world skills. With up-to-date content and personalized mentorship, you'll gain the knowledge needed to succeed in today's tech industry.</p>
+                            </div>
+                            <div class="feature-item slide-up icon-inline" data-stagger-delay="1">
+                                <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <h4>Expert Instructors</h4>
+                                <p>Learn from seasoned industry professionals who bring real-world experience and insights to every lesson, guiding you with practical knowledge to help you succeed.</p>
+                            </div>
+                            <div class="feature-item slide-up icon-inline" data-stagger-delay="2">
+                                <div class="icon"><i class="fas fa-key"></i></div>
+                                <h4>Internship Portal Access</h4>
+                                <p>Get separate portal access to course materials and updates, allowing you to learn at your own pace and stay up-to-date with industry trends long after you've completed the program.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="achievements" class="achievements-display-section" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">Our Recognitions</h3>
+                        <h2 class="section-title-main animate-text-lines">Our Achievements</h2>
+                        <div class="achievements-grid">
+                            <div class="achievement-item slide-up" data-stagger-delay="0">
+                                <img src="https://www.inlighntech.com/wp-content/uploads/2025/04/WhatsApp-Image-2025-04-30-at-16.32.01_07ba59ed-780x777.jpg" alt="Incorporation Certificate">
+                                <h4>Incorporation Certificate</h4>
+                                <p>Ministry of Corporate Affairs Approved</p>
+                            </div>
+                            <div class="achievement-item slide-up" data-stagger-delay="1">
+                                <img src="https://www.inlighntech.com/wp-content/uploads/2025/04/Screenshot-2025-04-30-164507.png" alt="Startup India Recognition">
+                                <h4>Startup India Recognitions</h4>
+                                <p>Department for Promotion of Industry and Internal Trade Approved</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="contact-section" data-section-theme="light">
+                    <div class="container">
+                        <h3 class="section-title-sub scale-fade-reveal">GET IN TOUCH</h3>
+                        <h2 class="section-title-main animate-text-lines">Ready to Start <br>Your Journey?</h2>
+                        <p class="fade-in contact-subtext">Have a question or want to work together? Fill out the form below.</p>
+                        <form class="contact-form slide-up">
+                            <div class="form-row">
+                                <div class="form-group"><input type="text" id="name" name="name" required placeholder="Full Name"></div>
+                                <div class="form-group"><input type="email" id="email" name="email" required placeholder="Email Address"></div>
+                            </div>
+                             <div class="form-row">
+                                <div class="form-group"><input type="text" id="domain" name="domain" placeholder="Domain of Internship"></div>
+                                <div class="form-group"><input type="text" id="state" name="state" placeholder="State"></div>
+                            </div>
+                            <div class="form-group"><textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea></div>
+                            <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="main-footer" data-section-theme="light">
+                 <div class="container">
+                    <div class="footer-grid">
+                        <div class="footer-col" data-stagger-delay="0">
+                            <h4 class="footer-heading animate-footer-heading">Menu</h4>
+                            <ul>
+                                <li class="animate-footer-item"><a href="index.html">Home</a></li>
+                                <li class="animate-footer-item"><a href="about.html">About Us</a></li>
+                                <li class="animate-footer-item"><a href="index.html#programs">Programs</a></li>
+                                <li class="animate-footer-item"><a href="#contact">Contact Us</a></li>
+                                <li class="animate-footer-item"><a href="#">Login To Portal</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col" data-stagger-delay="1">
+                            <h4 class="footer-heading animate-footer-heading">Quick Links</h4>
+                            <ul>
+                                <li class="animate-footer-item"><a href="#">Privacy Policy</a></li>
+                                <li class="animate-footer-item"><a href="#">Terms & Conditions</a></li>
+                                <li class="animate-footer-item"><a href="#">Disclaimer</a></li>
+                                <li class="animate-footer-item"><a href="#">FAQ's</a></li>
+                            </ul>
+                        </div>
+                         <div class="footer-col" data-stagger-delay="2">
+                            <h4 class="footer-heading animate-footer-heading">Follow Us</h4>
+                            <div class="social-icons animate-footer-item">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                            <br>
+                            <p class="animate-footer-item"><strong>Corporate Office:</strong><br>Office No. 11A102, 11th Floor, WeWork Prestige Central, 36, Infantry Rd, Tasker Town, Shivaji Nagar, Bengaluru, Karnataka 560001</p>
+                            <p class="animate-footer-item"><strong>Phone:</strong> <a href="tel:+919368842663">+91 9368842663</a></p>
+                            <p class="animate-footer-item"><strong>Email:</strong> <a href="mailto:info@inlighntech.com">info@inlighntech.com</a></p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>Copyright <span id="current-year">2024</span> INLIGHN TECH | All Rights Reserved | Design By Gdscreotives</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Removed the scroll-based stack animation script -->
+</body>
+</html>
